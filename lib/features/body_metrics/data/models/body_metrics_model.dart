@@ -1,59 +1,74 @@
-import '../../domain/entities/body_metrics.dart';
+import 'package:fit_tracker/features/body_metrics/domain/entities/body_metrics.dart';
 
-class BodyMetricsModel extends BodyMetrics {
+class BodyMetricsModel {
+  final DateTime recordedAt;
+  final double heightCm;
+  final double weightKg;
+  final double? bmi;
+  final double? bodyFat;
+  final double? waistCm;
+  final double? neckCm;
+  final double? hipCm;
+  final int? systolic;
+  final int? diastolic;
+  final int? pulseRate;
+
   BodyMetricsModel({
-    required DateTime recordedAt,
-    required double heightCm,
-    required double weightKg,
-    double? waistCm,
-    double? neckCm,
-    double? hipCm,
-    int? systolic,
-    int? diastolic,
-    int? pulseRate,
-    double? bmi,
-    double? bodyFat,
-  }) : super(
-          recordedAt: recordedAt,
-          heightCm: heightCm,
-          weightKg: weightKg,
-          waistCm: waistCm,
-          neckCm: neckCm,
-          hipCm: hipCm,
-          systolic: systolic,
-          diastolic: diastolic,
-          pulseRate: pulseRate,
-          bmi: bmi,
-          bodyFat: bodyFat,
-        );
+    required this.recordedAt,
+    required this.heightCm,
+    required this.weightKg,
+    this.bmi,
+    this.bodyFat,
+    this.waistCm,
+    this.neckCm,
+    this.hipCm,
+    this.systolic,
+    this.diastolic,
+    this.pulseRate,
+  });
 
   factory BodyMetricsModel.fromJson(Map<String, dynamic> json) {
     return BodyMetricsModel(
-      recordedAt: DateTime.parse(json['recorded_at']),
-      heightCm: (json['height_cm'] as num).toDouble(),
-      weightKg: (json['weight_kg'] as num).toDouble(),
-      waistCm: json['waist_cm'] != null ? (json['waist_cm'] as num).toDouble() : null,
-      neckCm: json['neck_cm'] != null ? (json['neck_cm'] as num).toDouble() : null,
-      hipCm: json['hip_cm'] != null ? (json['hip_cm'] as num).toDouble() : null,
-      systolic: json['systolic'],
-      diastolic: json['diastolic'],
-      pulseRate: json['pulse_rate'],
-      bmi: (json['bmi'] as num).toDouble(),
-      bodyFat: json['body_fat'] != null ? (json['body_fat'] as num).toDouble() : null,
+bmi: (json['bmi'] as num).toDouble(),
+bodyFat: json['bodyFat'] != null ? (json['bodyFat'] as num).toDouble() : null,
+heightCm: (json['heightCm'] as num).toDouble(),
+weightKg: (json['weightKg'] as num).toDouble(),
+waistCm: json['waistCm'] != null ? (json['waistCm'] as num).toDouble() : null,
+neckCm: json['neckCm'] != null ? (json['neckCm'] as num).toDouble() : null,
+hipCm: json['hipCm'] != null ? (json['hipCm'] as num).toDouble() : null,
+systolic: json['systolic'] as int?,
+diastolic: json['diastolic'] as int?,
+pulseRate: json['pulseRate'] as int?,
+recordedAt: DateTime.parse(json['recordedAt'] as String),
+
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'recorded_at': recordedAt.toIso8601String(),
-        'height_cm': heightCm,
-        'weight_kg': weightKg,
-        'waist_cm': waistCm,
-        'neck_cm': neckCm,
-        'hip_cm': hipCm,
+        'recordedAt': recordedAt.toIso8601String(),
+        'heightCm': heightCm,
+        'weightKg': weightKg,
+        'bmi': bmi,
+        'bodyFat': bodyFat,
+        'waistCm': waistCm,
+        'neckCm': neckCm,
+        'hipCm': hipCm,
         'systolic': systolic,
         'diastolic': diastolic,
-        'pulse_rate': pulseRate,
-        'bmi': bmi,
-        'body_fat': bodyFat,
+        'pulseRate': pulseRate,
       };
+
+  BodyMetrics toEntity() => BodyMetrics(
+        recordedAt: recordedAt,
+        heightCm: heightCm,
+        weightKg: weightKg,
+        bmi: bmi,
+        bodyFat: bodyFat,
+        waistCm: waistCm,
+        neckCm: neckCm,
+        hipCm: hipCm,
+        systolic: systolic,
+        diastolic: diastolic,
+        pulseRate: pulseRate,
+      );
 }

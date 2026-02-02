@@ -7,6 +7,9 @@ import 'package:provider/provider.dart';
 
 class MetricsResultPage extends StatelessWidget {
   final BodyMetrics metrics;
+    // placeholder value for the current user
+  final userId = 2;
+  
 
   const MetricsResultPage({super.key, required this.metrics});
 
@@ -58,7 +61,7 @@ Widget build(BuildContext context) {
                 onPressed: () {
                   // Save metrics via provider, including BMI and body fat
                   provider.addMetrics(
-                    metrics,
+                    metrics, userId
                   );
 
                   ScaffoldMessenger.of(context).showSnackBar(

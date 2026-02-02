@@ -14,12 +14,14 @@ class HealthProgressPage extends StatefulWidget {
 }
 
 class _HealthProgressPageState extends State<HealthProgressPage> {
+    // placeholder value for the current user
+  var userId = 2;
   @override
   void initState() {
     super.initState();
     // Load metrics when page opens
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<BodyMetricsProvider>(context, listen: false).loadMetrics();
+      Provider.of<BodyMetricsProvider>(context, listen: false).loadMetrics(userId);
     });
   }
 

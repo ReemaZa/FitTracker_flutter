@@ -1,16 +1,15 @@
 import '../../domain/entities/body_metrics.dart';
 import '../../domain/repositories/body_metrics_repository.dart';
-import '../datasources/mock_metrics_datasource.dart';
+import '../datasources/remote_metrics_datasource.dart';
 import '../models/body_metrics_model.dart';
 
 class BodyMetricsRepositoryImpl implements BodyMetricsRepository {
-  final MockMetricsDatasource datasource;
+  final RemoteMetricsDatasource datasource;
 
   BodyMetricsRepositoryImpl(this.datasource);
 
   @override
-  Future<void> saveMetrics(BodyMetrics metrics) async {
-    // simulate saving
+  Future<void> saveMetrics(BodyMetrics metrics, int userId) async {
     final model = BodyMetricsModel(
       recordedAt: metrics.recordedAt,
       heightCm: metrics.heightCm,
@@ -24,11 +23,13 @@ class BodyMetricsRepositoryImpl implements BodyMetricsRepository {
       diastolic: metrics.diastolic,
       pulseRate: metrics.pulseRate,
     );
-    // In mock we do nothing, in real DB we would insert model.toJson()
+
+    await datasource.saveMetrics(model, userId);
   }
 
   @override
-  Future<List<BodyMetrics>> getAllMetrics() async {
-    return await datasource.fetchUserMetrics('mock-user');
+  Future<List<BodyMetrics>> getAllMetrics(int userId) async {
+    final models = await datasource.fetchUserMetrics(userId);
+    return models.map((m) => m.toEntity()).toList();
   }
 }

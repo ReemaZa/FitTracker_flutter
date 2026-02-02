@@ -16,13 +16,13 @@ class BodyMetricsProvider extends ChangeNotifier {
     required this.getMetricsUseCase,
   });
 
-  Future<void> addMetrics(BodyMetrics metrics) async {
-    await saveMetricsUseCase(metrics);
-    await loadMetrics();
+  Future<void> addMetrics(BodyMetrics metrics, int id) async {
+    await saveMetricsUseCase(metrics, id);
+    await loadMetrics(id);
   }
 
-  Future<void> loadMetrics() async {
-    _metrics = await getMetricsUseCase();
+  Future<void> loadMetrics(int id) async {
+    _metrics = await getMetricsUseCase(id);
     notifyListeners();
   }
 }

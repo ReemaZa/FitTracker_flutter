@@ -6,7 +6,9 @@ import '../../domain/entities/body_metrics.dart';
 import '../providers/body_metrics_provider.dart';
 import 'metrics_result_page.dart';
 
+
 class AddMetricsPage extends StatefulWidget {
+  
   const AddMetricsPage({super.key});
 
   @override
@@ -25,6 +27,8 @@ class _AddMetricsPageState extends State<AddMetricsPage> {
   final _diastolicController = TextEditingController();
   final _pulseController = TextEditingController();
 
+  // placeholder value for the current user
+  var userId = 2;
   double? _parse(String value) =>
       value.trim().isEmpty ? null : double.tryParse(value);
 
@@ -58,6 +62,12 @@ class _AddMetricsPageState extends State<AddMetricsPage> {
       }
     }
 
+  if (bodyFat == null || bodyFat.isNaN || bodyFat.isInfinite) 
+  {
+    bodyFat = null;
+  }
+
+
     final metrics = BodyMetrics(
       recordedAt: DateTime.now(),
       heightCm: heightCm,
@@ -74,7 +84,7 @@ class _AddMetricsPageState extends State<AddMetricsPage> {
 
     // Store the metrics using the provider
     await Provider.of<BodyMetricsProvider>(context, listen: false)
-        .addMetrics(metrics);
+        .addMetrics(metrics, userId);
 
     // Navigate to the result page
     if (mounted) {

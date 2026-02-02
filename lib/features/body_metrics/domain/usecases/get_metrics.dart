@@ -6,7 +6,7 @@ class GetMetrics {
 
   GetMetrics(this.repository);
 
-  Future<List<BodyMetrics>> call() async {
-    return await repository.getAllMetrics();
+  Future<List<BodyMetrics>> call(int id) async {
+    return await repository.getAllMetrics(id);
   }
 }

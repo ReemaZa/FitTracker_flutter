@@ -1,4 +1,5 @@
 import 'package:fit_tracker/features/body_metrics/data/datasources/mock_metrics_datasource.dart';
+import 'package:fit_tracker/features/body_metrics/data/datasources/remote_metrics_datasource.dart';
 import 'package:fit_tracker/features/body_metrics/data/repositories/body_metrics_repository_impl.dart';
 import 'package:fit_tracker/features/body_metrics/domain/usecases/get_metrics.dart';
 import 'package:fit_tracker/features/body_metrics/domain/usecases/save_metrics.dart';
@@ -9,9 +10,10 @@ import 'package:flutter/material.dart';
 import 'core/theme/app_theme.dart';
 import 'features/auth/presentation/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
-  final repository = BodyMetricsRepositoryImpl(MockMetricsDatasource());
+  final repository = BodyMetricsRepositoryImpl(RemoteMetricsDatasource(baseUrl: 'http://10.0.2.2:3001', client: http.Client()));
 
   runApp(
     MultiProvider(

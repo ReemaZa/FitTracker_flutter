@@ -6,7 +6,7 @@ class SaveMetrics {
 
   SaveMetrics(this.repository);
 
-  Future<void> call(BodyMetrics metrics) async {
-    await repository.saveMetrics(metrics);
+  Future<void> call(BodyMetrics metrics, int id) async {
+    await repository.saveMetrics(metrics, id);
   }
 }
