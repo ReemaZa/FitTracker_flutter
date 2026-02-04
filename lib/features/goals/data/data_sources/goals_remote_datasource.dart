@@ -33,7 +33,7 @@ class GoalsRemoteDatasourceImpl implements GoalsRemoteDatasource {
     try {
       final response = await client
           .get(
-        Uri.parse('http://192.168.1.14:3001/goals'),
+        Uri.parse('$baseUrl/goals'),
         headers: {
           'accept': '*/*',
           'x-user-id': userId.toString(),
@@ -61,7 +61,7 @@ class GoalsRemoteDatasourceImpl implements GoalsRemoteDatasource {
   Future<GoalModel> createGoal(CreateGoalParams params) async {
     print('creating goal');
     final response = await client.post(
-      Uri.parse('http://192.168.1.14:3001/goals'),
+      Uri.parse('$baseUrl/goals'),
       headers: {
         'Content-Type': 'application/json',
         'x-user-id': '1',
