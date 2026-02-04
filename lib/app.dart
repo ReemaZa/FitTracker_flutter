@@ -1,3 +1,4 @@
+import 'package:fit_tracker/core/widgets/app_drawer.dart';
 import 'package:fit_tracker/features/forum/presentation/screens/forum_page.dart';
 import 'package:flutter/material.dart';
 import 'core/theme/app_colors.dart';
@@ -26,6 +27,10 @@ class _AppShellState extends State<AppShell> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+      centerTitle: true,
+    ),
+      drawer: const AppDrawer(),
       body: IndexedStack(
         index: _currentIndex,
         children: _pages,
