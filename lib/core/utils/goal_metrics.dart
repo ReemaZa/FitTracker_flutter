@@ -1,10 +1,12 @@
-enum GoalMetricType {
+/*enum GoalMetricType {
   duration,
   distance,
   volume,
   count,
   binary,
 }
+*/
+import '../../features/goals/domain/entities/goal.dart';
 
 class GoalMetricConfig {
   static const Map<GoalMetricType, List<String>> units = {

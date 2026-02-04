@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/primary_botton.dart';
 import '../../../../core/utils/goal_metrics.dart';
+import '../../domain/entities/goal.dart';
+import '../../domain/usecases/create_goal_params.dart';
+import '../providers/goals_provider.dart';
 import '../widgets/goal_type_selector.dart';
 import '../widgets/frequency_selector.dart';
 import '../widgets/week_days_selector.dart';
@@ -162,27 +166,34 @@ class _AddGoalPageState extends State<AddGoalPage> {
     );
   }
 
-  void _submit() {
-    debugPrint('''
-GOAL
------
-Title: ${_titleController.text}
-GoalType: $_goalType
-MetricType: $_metricType
-Unit: $_unit
-Target: ${_targetController.text}
+  void _submit() async {
+    final provider = context.read<GoalsProvider>();
 
-Schedule
---------
-Frequency: $_frequency
-Days: $_selectedDays
-Times/week: $_timesPerWeek
-''');
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Goal created (UI only)')),
+    final params = CreateGoalParams(
+      title: _titleController.text,
+      description: '',
+      goalType: _goalType.name,
+      metricType: _metricType.name,
+      targetValue: num.parse(_targetController.text),
+      unit: _unit,
+      startDate: DateTime.now(),
+      endDate: DateTime.now().add(const Duration(days: 365)),
+      frequencyType: _frequency.name,
+      daysOfWeek: _frequency == GoalFrequency.weekly
+          ? _selectedDays
+          : [],
     );
+
+    try {
+      await provider.addGoal(params);
+      Navigator.pop(context);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Failed to create goal')),
+      );
+    }
   }
+
 
   Widget _card({required Widget child}) {
     return Container(

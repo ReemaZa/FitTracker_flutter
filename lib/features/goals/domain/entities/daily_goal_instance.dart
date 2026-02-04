@@ -1,18 +1,12 @@
-enum GoalMetricType {
-  duration,
-  count,
-  volume,
-  binary,
-  distance,
-}
+// domain/entities/daily_goal_instance.dart
+import 'goal.dart';
 
 class DailyGoalInstance {
-  final String id;
+  final int id;
   final String title;
   final GoalMetricType metricType;
   final double targetValue;
   final String unit;
-
   double completedValue;
   bool isCompleted;
 
@@ -22,7 +16,7 @@ class DailyGoalInstance {
     required this.metricType,
     required this.targetValue,
     required this.unit,
-    this.completedValue = 0,
-    this.isCompleted = false,
+    required this.completedValue,
+    required this.isCompleted,
   });
 }

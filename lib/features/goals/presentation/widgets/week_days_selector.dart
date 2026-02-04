@@ -11,7 +11,7 @@ class WeekDaysSelector extends StatelessWidget {
     required this.onChanged,
   });
 
-  static const _days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+  static const _days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
   @override
   Widget build(BuildContext context) {

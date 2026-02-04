@@ -1,4 +1,6 @@
+import '../../../../core/utils/goal_metrics.dart';
 import 'daily_goal_instance.dart';
+import 'goal.dart';
 
 class GoalStepRules {
   static double stepFor({
