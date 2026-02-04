@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "17011165712",
+    "project_id": "fithneytk",
+    "storage_bucket": "fithneytk.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17011165712:android:4419d2503ab57da7341895",
+        "android_client_info": {
+          "package_name": "com.example.allotransport"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmQgF16rH22tC_Uon46JXs69lhbeOo_sk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17011165712:android:fa49dc09ce4bb260341895",
+        "android_client_info": {
+          "package_name": "faf.company"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmQgF16rH22tC_Uon46JXs69lhbeOo_sk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

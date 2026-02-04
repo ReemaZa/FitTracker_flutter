@@ -1,9 +1,9 @@
+import 'package:fit_tracker/features/forum/presentation/screens/forum_page.dart';
 import 'package:flutter/material.dart';
 import 'core/theme/app_colors.dart';
 import 'core/widgets/gradient_icon.dart';
 import 'features/goals/presentation/screens/goal_page.dart';
 import 'features/goals/presentation/screens/today_page.dart';
-
 
 class AppShell extends StatefulWidget {
   const AppShell({super.key});
@@ -19,7 +19,7 @@ class _AppShellState extends State<AppShell> {
     Placeholder(), // HomePage
     GoalsPage(),
     TodayPage(), // AddActivityPage
-    Placeholder(), // ForumPage
+    ForumPage(), // ForumPage
     Placeholder(), // ProfilePage
   ];
 
@@ -53,23 +53,23 @@ class _AppShellState extends State<AppShell> {
   }
 
   BottomNavigationBarItem _navItem(
-      IconData icon,
-      String label,
-      int index,
-      ) {
+    IconData icon,
+    String label,
+    int index,
+  ) {
     final isSelected = _currentIndex == index;
 
     return BottomNavigationBarItem(
       label: label,
       icon: isSelected
           ? GradientIcon(
-        icon: icon,
-        gradient: AppColors.secondaryGradient,
-      )
+              icon: icon,
+              gradient: AppColors.secondaryGradient,
+            )
           : Icon(
-        icon,
-        color: AppColors.grayMedium,
-      ),
+              icon,
+              color: AppColors.grayMedium,
+            ),
     );
   }
 }
