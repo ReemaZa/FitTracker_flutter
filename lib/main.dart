@@ -1,9 +1,9 @@
 import 'package:fit_tracker/features/body_metrics/presentation/screens/add_metrics_page.dart';
 import 'package:fit_tracker/features/body_metrics/presentation/screens/health_progress_page.dart';
-import 'package:fit_tracker/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'core/theme/app_theme.dart';
 import 'features/auth/presentation/screens/splash_screen.dart';
+import 'router/app_router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     },
 
       theme: AppTheme.lightTheme,
-      home: const SplashScreen(),
+      initialRoute: AppRouter.splash,
       onGenerateRoute: AppRouter.generateRoute,
     );
   }

@@ -5,6 +5,7 @@ import 'core/theme/app_colors.dart';
 import 'core/widgets/gradient_icon.dart';
 import 'features/goals/presentation/screens/goal_page.dart';
 import 'features/goals/presentation/screens/today_page.dart';
+import 'features/dashboard/presentation/screens/dashboard_screen.dart';
 
 class AppShell extends StatefulWidget {
   const AppShell({super.key});
@@ -17,9 +18,9 @@ class _AppShellState extends State<AppShell> {
   int _currentIndex = 0;
 
   final _pages = const [
-    Placeholder(), // HomePage
+    DashboardScreen(), // Dashboard
     GoalsPage(),
-    TodayPage(), // AddActivityPage
+    TodayPage(),
     ForumPage(), // ForumPage
     Placeholder(), // ProfilePage
   ];
@@ -47,7 +48,7 @@ class _AppShellState extends State<AppShell> {
           });
         },
         items: [
-          _navItem(Icons.home, 'Home', 0),
+          _navItem(Icons.home, 'Dashboard', 0),
           _navItem(Icons.flag, 'Goals', 1),
           _navItem(Icons.calendar_today, 'Today', 2),
           _navItem(Icons.forum, 'Forum', 3),
